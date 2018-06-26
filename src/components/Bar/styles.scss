@@ -1,0 +1,12 @@
+.base {
+  height: 30px;
+  border-radius: 3px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.bar {
+  display: inline-block;
+  height: 30px;
+  transition: width 0.4s ease;
+}
