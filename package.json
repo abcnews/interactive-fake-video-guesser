@@ -7,7 +7,7 @@
   "contributors": [
     "Nathan Hoad <nathan@nathanhoad.net>"
   ],
-  "aunty": "preact-app",
+  "aunty": "preact",
   "scripts": {
     "start": "aunty serve",
     "test": "jest"
@@ -18,7 +18,7 @@
     }
   },
   "devDependencies": {
-    "@abcnews/aunty": "^8.0.1",
+    "@abcnews/aunty": "^9.1.0",
     "babel-plugin-transform-react-jsx": "^6.24.1",
     "babel-preset-env": "^1.7.0",
     "html-looks-like": "^1.0.3",
