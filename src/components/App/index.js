@@ -28,7 +28,6 @@ class App extends Component {
 
     client.increment({ question: `Q${this.props.question}`, answer: choice }, (err, question) => {
       if (err) return console.log('Err:', err);
-      // this.setState(state => question.value);
       this.onResponse(question.value, true);
     });
   }
@@ -80,10 +79,18 @@ class App extends Component {
             )}
 
             {this.state.hasLoaded && (
-              <p>
-                <strong>{Math.floor(highestResponses[0].percentage * highestResponses.length)}%</strong> chose{' '}
-                <strong>{highestResponses.map(r => r.name.toLowerCase()).join(' or ')}</strong> as being fake.
-              </p>
+              <div>
+                {highestResponses.length === this.state.options.length && (
+                  <p>There was an even split between what people thought was fake.</p>
+                )}
+
+                {highestResponses.length < this.state.options.length && (
+                  <p>
+                    <strong>{Math.floor(highestResponses[0].percentage * highestResponses.length)}%</strong> chose{' '}
+                    <strong>{highestResponses.map(r => r.name.toLowerCase()).join(' or ')}</strong> as being fake.
+                  </p>
+                )}
+              </div>
             )}
           </div>
         </div>
