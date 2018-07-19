@@ -10,11 +10,7 @@ const root = document.querySelector(`[data-${PROJECT_NAME}-root]`);
 function init() {
   loadGuessers().forEach(guesser => {
     const App = require('./components/App');
-    render(
-      <App question={guesser.config.question} options={guesser.config.options} />,
-      guesser.mountNode,
-      guesser.mountNode.firstChild
-    );
+    render(<App config={guesser.config} rollup={guesser.rollup} />, guesser.mountNode, guesser.mountNode.firstChild);
   });
 }
 

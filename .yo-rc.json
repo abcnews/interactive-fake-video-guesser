@@ -1,5 +1,8 @@
 {
   "@abcnews/generator-aunty": {
     "template": "preact"
+  },
+  "@abcnews/aunty": {
+    "template": "preact"
   }
 }

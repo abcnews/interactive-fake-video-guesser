@@ -6,7 +6,7 @@ module.exports.loadGuessers = () => {
     window.__GUESSERS__ = [].slice
       .call(document.querySelectorAll('a[name^="guesser"]'))
       .map(anchor => {
-        // load some options from the anchor for possible answers
+        // Load some options from the anchor for possible answers
         const config = alternatingCaseToObject(anchor.getAttribute('name').replace('guesser', ''));
         config.options = [config.options].concat(config.or).map(option => {
           return option.slice(0, 1).toUpperCase() + option.slice(1).toLowerCase();
@@ -15,10 +15,19 @@ module.exports.loadGuessers = () => {
 
         const mountNode = createMountNode(anchor);
 
+        // Grab the text just below the anchor
+        let nextElement;
+        // TODO: Make rollup and option
+        // if (config.rollup) {
+        nextElement = anchor.nextElementSibling;
+        nextElement.parentNode.removeChild(nextElement);
+        // }
+
         return {
           config,
           anchor,
-          mountNode
+          mountNode,
+          rollup: nextElement
         };
       })
       .filter(a => a);

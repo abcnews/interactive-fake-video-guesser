@@ -1,7 +1,9 @@
 const { h, Component } = require('preact');
+const color = require('color');
 const styles = require('./styles.scss');
 const { Client } = require('../../poll-counter');
 const Bar = require('../Bar');
+const Rollup = require('../Rollup');
 const colours = require('../../colours');
 
 const client = new Client('interactive-fake-news-spotter');
@@ -26,7 +28,7 @@ class App extends Component {
   choose(choice) {
     this.setState({ hasChosen: true });
 
-    client.increment({ question: `Q${this.props.question}`, answer: choice }, (err, question) => {
+    client.increment({ question: this.props.config.question, answer: choice }, (err, question) => {
       if (err) return console.log('Err:', err);
       this.onResponse(question.value, true);
     });
@@ -36,7 +38,7 @@ class App extends Component {
     hasLoaded = hasLoaded || this.state.hasLoaded;
 
     // Work out how many votes there were for an option
-    let options = this.props.options.map(option => {
+    let options = this.props.config.options.map(option => {
       return {
         name: option,
         value: response[option] || 0
@@ -73,23 +75,39 @@ class App extends Component {
 
           <div className={styles.response}>
             {!this.state.hasLoaded && (
-              <p>
-                <span className={styles.loading}>Calculating...</span>
-              </p>
+              <div className="u-richtext">
+                <p>
+                  <span className={styles.loading}>Comparing your answer to everybody else...</span>
+                </p>
+              </div>
             )}
 
             {this.state.hasLoaded && (
               <div>
-                {highestResponses.length === this.state.options.length && (
-                  <p>There was an even split between what people thought was fake.</p>
-                )}
+                <div className={styles.results}>
+                  {this.state.options.map((option, index) => {
+                    return (
+                      <span className={styles.result} style={{ color: color(colours[index]).darken(0.3) }}>
+                        {option.percentage.toFixed(1)}% {option.name}
+                      </span>
+                    );
+                  })}
+                </div>
 
-                {highestResponses.length < this.state.options.length && (
-                  <p>
-                    <strong>{Math.floor(highestResponses[0].percentage * highestResponses.length)}%</strong> chose{' '}
-                    <strong>{highestResponses.map(r => r.name.toLowerCase()).join(' or ')}</strong> as being fake.
-                  </p>
-                )}
+                <div className="u-richtext">
+                  {highestResponses.length === this.state.options.length && (
+                    <p>There is an even split between what people thought was fake.</p>
+                  )}
+
+                  {highestResponses.length < this.state.options.length && (
+                    <p>
+                      <strong>{Math.floor(highestResponses[0].percentage * highestResponses.length)}%</strong> chose{' '}
+                      <strong>{highestResponses.map(r => r.name).join(' or ')}</strong> as being fake.
+                    </p>
+                  )}
+                </div>
+
+                <Rollup node={this.props.rollup} />
               </div>
             )}
           </div>
@@ -99,9 +117,17 @@ class App extends Component {
 
     return (
       <div className={styles.options}>
-        {this.props.options.map((option, index) => {
+        {this.props.config.options.map((option, index) => {
+          const textColor = color(colours[index]).isDark() ? 'white' : 'black';
+
           return (
-            <button style={{ background: colours[index] }} onClick={() => this.choose(option)}>
+            <button
+              className={styles[textColor]}
+              style={{
+                background: colours[index],
+                color: textColor
+              }}
+              onClick={() => this.choose(option)}>
               {option}
             </button>
           );
