@@ -1,0 +1,47 @@
+.base {
+  background: rgba(0, 0, 0, 0.75);
+  color: #f9f9f9;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1rem;
+  line-height: 1.66666667;
+  padding: 20px;
+  text-transform: uppercase;
+  font-weight: 100;
+
+  animation-name: appear;
+  animation-duration: 0.4s;
+  animation-fill-mode: forwards;
+  animation-iteration-count: 1;
+
+  .track {
+    margin-top: 10px;
+    height: 10px;
+    background: rgba(255, 255, 255, 0.3);
+    width: 100%;
+
+    .bar {
+      height: 10px;
+      background: #ff3b5f;
+    }
+  }
+
+  &.isChosen {
+    background: rgba(255, 255, 255, 0.8);
+    color: #111;
+
+    .track {
+      background: rgba(0, 0, 0, 0.2);
+    }
+  }
+}
+
+@keyframes appear {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -45%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(-50%, -50%);
+  }
+}

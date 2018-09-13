@@ -8,26 +8,53 @@ module.exports.loadGuessers = () => {
       .map(anchor => {
         // Load some options from the anchor for possible answers
         const config = alternatingCaseToObject(anchor.getAttribute('name').replace('guesser', ''));
-        config.options = [config.options].concat(config.or).map(option => {
-          return option.slice(0, 1).toUpperCase() + option.slice(1).toLowerCase();
-        });
-        delete config.or;
 
-        const mountNode = createMountNode(anchor);
+        let options = [];
+        options.push(config.left || 'left');
+        options.push(config.right || 'right');
+
+        if (config.both) {
+          options.push('both');
+        }
+        if (config.neither) {
+          options.push('neither');
+        }
+
+        config.options = options;
 
         // Grab the text just below the anchor
-        let nextElement;
+        let nextElements = [];
         // TODO: Make rollup and option
+        // #guesserROLLUPtrue
+        // Rolling up will take the element just below the interactive and hide it
+        // until an option is chosen
         // if (config.rollup) {
-        nextElement = anchor.nextElementSibling;
-        nextElement.parentNode.removeChild(nextElement);
+        // let next = anchor.nextElementSibling;
+        // nextElements.push(next);
+        // next.parentNode.removeChild(next);
+
+        // next = anchor.nextElementSibling;
+        // nextElements.push(next);
+        // next.parentNode.removeChild(next);
+
+        // next = anchor.nextElementSibling;
+        // next.style.setProperty('opacity', 0);
+
+        // console.log('next', next.cloneElement());
+
+        // nextElements.push(next);
         // }
+
+        config.videoNode = anchor.previousElementSibling;
+        if (config.videoNode.tagName === 'P') {
+          config.videoNode = config.videoNode.previousElementSibling;
+        }
 
         return {
           config,
           anchor,
-          mountNode,
-          rollup: nextElement
+          mountNode: createMountNode(anchor, 'guesser'),
+          rollup: nextElements
         };
       })
       .filter(a => a);

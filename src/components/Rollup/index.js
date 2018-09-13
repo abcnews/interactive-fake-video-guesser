@@ -6,17 +6,23 @@ class Rollup extends Component {
   }
 
   componentDidMount() {
-    if (!this.props.node) return;
+    if (!this.props.nodes) return;
 
-    this.base.appendChild(this.props.node);
+    this.props.nodes.forEach(node => {
+      this.base.appendChild(this.props.node);
+    });
   }
 
   componentWillUnmount() {
-    const { node } = this.props;
+    const { nodes } = this.props;
 
-    if (node && this.base.contains(node)) {
-      this.base.removeChild(node);
-    }
+    if (!nodes) return;
+
+    nodes.forEach(node => {
+      if (this.base.contains(node)) {
+        this.base.removeChild(node);
+      }
+    });
   }
 
   render() {

@@ -1,83 +1,103 @@
+:global(.guesser) {
+  padding-left: 0px !important;
+  padding-right: 0px !important;
+  width: 100% !important;
+}
+
+:global(.Caption) {
+  background: none !important;
+}
+
+.base {
+  position: relative;
+}
+
 .base * {
   box-sizing: border-box;
 }
 
+.loader {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+
 .options {
-  display: flex;
+  .otherButtons {
+    text-align: center;
 
-  & > * {
-    margin: 0 2px;
+    & > button {
+      margin: 0 5px;
+    }
   }
 
-  & > :first-child {
-    margin-left: 0;
+  .leftButton,
+  .rightButton,
+  .bothButton {
+    position: absolute;
+    top: 0px;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
 
-  & > :last-child {
-    margin-right: 0;
-  }
-
-  @media all and (max-width: 500px) {
-    flex-direction: column;
-  }
-
-  button {
-    flex-grow: 1;
-    line-height: 30px;
-    font-size: 15px;
-    text-transform: uppercase;
+  .leftButton,
+  .rightButton,
+  .bothButton,
+  .neitherButton {
+    font-size: 18px;
+    line-height: 42px;
+    padding: 0 18px;
     border: none;
-    border-radius: 3px !important;
     background: white;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    text-transform: uppercase;
+    font-family: Arial, Helvetica, sans-serif;
     cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     transition: all 0.3s ease;
-    font-weight: bold;
+    border-radius: 1px;
 
     &:hover {
-      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.4);
     }
+  }
 
-    &.white {
-      text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.6);
-    }
+  .leftButton {
+    left: 25%;
+  }
 
-    &.black {
-      text-shadow: 0 1px 0 rgba(255, 255, 255, 0.6);
-    }
+  .rightButton {
+    left: 75%;
+  }
+
+  .neitherButtonWrapper {
+    text-align: center;
   }
 }
 
-.response {
-  // padding: 1px 10px;
-  text-align: center;
-}
-
-.loading {
-  color: #666;
-  animation-duration: 1s;
-  animation-name: loading;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-  animation-direction: alternate;
-}
-
-@keyframes loading {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
+.loader {
 }
 
 .results {
-  margin-bottom: 20px;
-  text-align: center;
-}
+  .leftResult,
+  .rightResult,
+  .bothResult {
+    position: absolute;
+    top: 0px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 40%;
+  }
 
-.result {
-  display: inline-block;
-  margin: 0 10px;
-  color: #666;
+  .leftResult {
+    left: 25%;
+  }
+
+  .rightResult {
+    left: 75%;
+  }
+
+  .neitherResult {
+    width: 40%;
+    margin: auto;
+  }
 }

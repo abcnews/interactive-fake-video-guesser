@@ -1,0 +1,19 @@
+@keyframes loading {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.base {
+  margin: auto;
+  text-indent: -9999rem;
+  border: 0.125rem solid rgba(255, 255, 255, 0.9);
+  border-left-color: transparent;
+  border-radius: 50%;
+  width: 3rem;
+  height: 3rem;
+  animation: loading 1s infinite linear;
+}
