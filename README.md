@@ -4,7 +4,7 @@ A project generated from [aunty](https://github.com/abcnews/aunty)'s `preact-app
 
 ## TODO
 
-- Ability to roll up N of the next elements
+- Mobile placement of buttons and results
 
 ## Authors
 

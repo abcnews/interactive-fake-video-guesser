@@ -20,7 +20,7 @@ class App extends Component {
     this.revealRollups = this.revealRollups.bind(this);
 
     this.state = {
-      isPortrait: window.innerWidth <= window.innerHeight,
+      isPortrait: window.innerWidth <= 499,
       video: null,
       videoWidth: 0,
       videoHeight: 0,
@@ -55,19 +55,25 @@ class App extends Component {
   }
 
   onResize() {
-    if (window.innerWidth <= window.innerHeight && !this.state.isPortrait) {
-      this.setState({ isPortrait: true });
-    }
+    this.setState({ isPortrait: window.innerWidth <= 499 });
   }
 
   getVideo() {
     let video = this.base.parentElement.previousElementSibling;
-    if (!video || video.className.indexOf('Video') === -1) {
+    if (!video || video.className.indexOf('Video') === -1 || video.offsetHeight < 100) {
       clearTimeout(this.getVideoTimer);
       this.getVideoTimer = setTimeout(this.getVideo, 100);
     } else {
       let videoWidth = video.offsetWidth;
       let videoHeight = video.offsetHeight;
+
+      // Videos are a weird res on mobile
+      if (this.state.isPortrait) {
+        let sizer = video.querySelector('*[class^="u-sizer"]');
+        videoHeight = (sizer.offsetWidth / 2) * 3;
+        sizer.style.setProperty('height', videoHeight + 'px');
+      }
+
       video.parentElement.removeChild(video);
       this.setState(state => ({ video, videoWidth, videoHeight }));
     }
@@ -164,7 +170,7 @@ class App extends Component {
 
     let leftLabel = options[0].name;
     let rightLabel = options[1].name;
-    if (this.isPortrait) {
+    if (this.state.isPortrait) {
       leftLabel = leftLabel === 'left' ? 'top' : leftLabel;
       rightLabel = rightLabel === 'right' ? 'bottom' : rightLabel;
     }
@@ -173,6 +179,12 @@ class App extends Component {
       let leftTop = `${this.state.videoHeight - (this.state.hasBoth ? 180 : 80)}px`;
       let rightTop = `${this.state.videoHeight - (this.state.hasBoth ? 180 : 80)}px`;
       let bothTop = `${this.state.videoHeight - 80}px`;
+
+      if (this.state.isPortrait) {
+        leftTop = `${this.state.videoHeight / 2 - (this.state.hasBoth ? 70 : 40)}px`;
+        rightTop = `${this.state.videoHeight - (this.state.hasBoth ? 70 : 40)}px`;
+        bothTop = `${this.state.videoHeight / 2}px`;
+      }
 
       ui = (
         <div className={styles.response}>
@@ -228,7 +240,11 @@ class App extends Component {
       let rightButtonTop = `${this.state.videoHeight - (this.state.hasBoth ? 130 : 60)}px`;
       let bothButtonTop = `${this.state.videoHeight - 60}px`;
 
-      // TODO: if mobile then left is now videoHeight / 2 - 40? and right is videoHeight - 40
+      if (this.state.isPortrait) {
+        leftButtonTop = `${this.state.videoHeight / 2 - (this.state.hasBoth ? 70 : 40)}px`;
+        rightButtonTop = `${this.state.videoHeight - (this.state.hasBoth ? 70 : 40)}px`;
+        bothButtonTop = `${this.state.videoHeight / 2}px`;
+      }
 
       ui = (
         <div className={styles.options}>

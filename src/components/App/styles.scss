@@ -61,12 +61,25 @@
     }
   }
 
-  .leftButton {
-    left: 25%;
+  @media screen and (max-device-width: 499px) {
+    .leftButton,
+    .rightButton,
+    .bothButton,
+    .neitherButton {
+      font-size: 14px;
+      line-height: 36px;
+      padding: 0 14px;
+    }
   }
 
-  .rightButton {
-    left: 75%;
+  @media screen and (min-device-width: 500px) {
+    .leftButton {
+      left: 25%;
+    }
+
+    .rightButton {
+      left: 75%;
+    }
   }
 
   .neitherButtonWrapper {
@@ -85,16 +98,28 @@
     width: 40%;
   }
 
-  .leftResult {
-    left: 25%;
+  @media screen and (max-device-width: 499px) {
+    .leftResult,
+    .rightResult,
+    .bothResult,
+    .neitherResult {
+      width: 80%;
+      margin: auto;
+    }
   }
 
-  .rightResult {
-    left: 75%;
-  }
+  @media screen and (min-device-width: 500px) {
+    .leftResult {
+      left: 25%;
+    }
 
-  .neitherResult {
-    width: 40%;
-    margin: auto;
+    .rightResult {
+      left: 75%;
+    }
+
+    .neitherResult {
+      width: 40%;
+      margin: auto;
+    }
   }
 }

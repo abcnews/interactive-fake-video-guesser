@@ -35,6 +35,12 @@
   }
 }
 
+@media screen and (max-device-width: 500px) {
+  .base {
+    padding: 8px;
+  }
+}
+
 @keyframes appear {
   0% {
     opacity: 0;
