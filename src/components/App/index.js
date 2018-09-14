@@ -1,7 +1,6 @@
 const { h, Component } = require('preact');
 const styles = require('./styles.scss');
 const { Client } = require('../../poll-counter');
-const Rollup = require('../Rollup');
 const Result = require('../Result');
 const Loader = require('../Loader');
 
@@ -16,6 +15,9 @@ class App extends Component {
     this.choose = this.choose.bind(this);
     this.getVideo = this.getVideo.bind(this);
     this.injectVideo = this.injectVideo.bind(this);
+
+    this.getRollup = this.getRollup.bind(this);
+    this.revealRollups = this.revealRollups.bind(this);
 
     this.state = {
       isPortrait: window.innerWidth <= window.innerHeight,
@@ -43,11 +45,13 @@ class App extends Component {
     this.onResponse({});
 
     this.getVideoTimer = setTimeout(this.getVideo, 100);
+    this.getRollupTimer = setTimeout(this.getRollup, 100);
   }
 
   componentWillUnmount() {
     window.removeEventListener('resize', this.onResize);
     clearTimeout(this.getVideoTimer);
+    clearTimeout(this.getRollupTimer);
   }
 
   onResize() {
@@ -73,6 +77,40 @@ class App extends Component {
     if (!element) return;
 
     element.appendChild(this.state.video);
+  }
+
+  getRollup() {
+    const { config } = this.props;
+
+    if (!config.rollup) return;
+
+    this.rollups = [];
+    let element = this.base.parentElement.nextElementSibling; // this is the guesser anchor tag, ignore it
+    for (var i = 0; i < config.rollup; i++) {
+      element = element.nextElementSibling;
+
+      // Before and after hasn't loaded yet.
+      if (element.tagName === 'A') {
+        this.getRollupTimer = setTimeout(this.getRollup, 100);
+        return;
+      }
+
+      this.rollups.push(element);
+      element.style.setProperty('max-height', '0');
+      element.style.setProperty('margin-bottom', '0px');
+      element.style.setProperty('transition', 'opacity 0.5s ease 0s');
+      element.style.setProperty('opacity', 0);
+    }
+  }
+
+  revealRollups() {
+    if (!this.rollups) return;
+
+    this.rollups.forEach(element => {
+      element.style.removeProperty('margin-bottom');
+      element.style.removeProperty('max-height');
+      element.style.setProperty('opacity', 1);
+    });
   }
 
   choose(choice) {
@@ -116,6 +154,8 @@ class App extends Component {
     });
 
     this.setState(() => ({ options, hasLoaded, hasBoth, hasNeither }));
+
+    this.revealRollups();
   }
 
   render() {
@@ -179,8 +219,6 @@ class App extends Component {
                   }
                 })}
               </div>
-
-              <Rollup nodes={this.props.rollup} />
             </div>
           )}
         </div>

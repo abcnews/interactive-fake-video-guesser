@@ -22,29 +22,6 @@ module.exports.loadGuessers = () => {
 
         config.options = options;
 
-        // Grab the text just below the anchor
-        let nextElements = [];
-        // TODO: Make rollup and option
-        // #guesserROLLUPtrue
-        // Rolling up will take the element just below the interactive and hide it
-        // until an option is chosen
-        // if (config.rollup) {
-        // let next = anchor.nextElementSibling;
-        // nextElements.push(next);
-        // next.parentNode.removeChild(next);
-
-        // next = anchor.nextElementSibling;
-        // nextElements.push(next);
-        // next.parentNode.removeChild(next);
-
-        // next = anchor.nextElementSibling;
-        // next.style.setProperty('opacity', 0);
-
-        // console.log('next', next.cloneElement());
-
-        // nextElements.push(next);
-        // }
-
         config.videoNode = anchor.previousElementSibling;
         if (config.videoNode.tagName === 'P') {
           config.videoNode = config.videoNode.previousElementSibling;
@@ -53,8 +30,7 @@ module.exports.loadGuessers = () => {
         return {
           config,
           anchor,
-          mountNode: createMountNode(anchor, 'guesser'),
-          rollup: nextElements
+          mountNode: createMountNode(anchor, 'guesser')
         };
       })
       .filter(a => a);
