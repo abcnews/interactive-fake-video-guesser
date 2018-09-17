@@ -11,6 +11,7 @@ class App extends Component {
     super(props);
 
     this.onResize = this.onResize.bind(this);
+    this.onScroll = this.onScroll.bind(this);
 
     this.choose = this.choose.bind(this);
     this.getVideo = this.getVideo.bind(this);
@@ -40,6 +41,7 @@ class App extends Component {
 
   componentDidMount() {
     window.addEventListener('resize', this.onResize);
+    window.addEventListener('scroll', this.onScroll);
 
     // Just add empty values in until we load the real ones
     this.onResponse({});
@@ -50,12 +52,22 @@ class App extends Component {
 
   componentWillUnmount() {
     window.removeEventListener('resize', this.onResize);
+    window.removeEventListener('scroll', this.onScroll);
+
     clearTimeout(this.getVideoTimer);
     clearTimeout(this.getRollupTimer);
   }
 
   onResize() {
     this.setState({ isPortrait: window.innerWidth <= 499 });
+  }
+
+  onScroll() {
+    const bounds = this.base.getBoundingClientRect();
+
+    if (bounds.top < window.innerHeight) {
+      this.state.video.querySelector('video').play();
+    }
   }
 
   getVideo() {
@@ -70,7 +82,7 @@ class App extends Component {
       // Videos are a weird res on mobile
       if (this.state.isPortrait) {
         let sizer = video.querySelector('*[class^="u-sizer"]');
-        videoHeight = (sizer.offsetWidth / 2) * 3;
+        videoHeight = (sizer.offsetWidth / 1090) * 1744;
         sizer.style.setProperty('height', videoHeight + 'px');
       }
 
@@ -181,7 +193,7 @@ class App extends Component {
       let bothTop = `${this.state.videoHeight - 80}px`;
 
       if (this.state.isPortrait) {
-        leftTop = `${this.state.videoHeight / 2 - (this.state.hasBoth ? 70 : 40)}px`;
+        leftTop = `40px`;
         rightTop = `${this.state.videoHeight - (this.state.hasBoth ? 70 : 40)}px`;
         bothTop = `${this.state.videoHeight / 2}px`;
       }
@@ -241,7 +253,7 @@ class App extends Component {
       let bothButtonTop = `${this.state.videoHeight - 60}px`;
 
       if (this.state.isPortrait) {
-        leftButtonTop = `${this.state.videoHeight / 2 - (this.state.hasBoth ? 70 : 40)}px`;
+        leftButtonTop = `40px`;
         rightButtonTop = `${this.state.videoHeight - (this.state.hasBoth ? 70 : 40)}px`;
         bothButtonTop = `${this.state.videoHeight / 2}px`;
       }
