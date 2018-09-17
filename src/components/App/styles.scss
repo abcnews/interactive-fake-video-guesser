@@ -44,8 +44,8 @@
   .rightButton,
   .bothButton,
   .neitherButton {
-    font-size: 18px;
-    line-height: 42px;
+    font-size: 16px;
+    line-height: 38px;
     padding: 0 18px;
     border: none;
     background: white;
@@ -74,11 +74,18 @@
 
   @media screen and (min-device-width: 500px) {
     .leftButton {
-      left: 25%;
+      left: 10px;
+      transform: translate(0, 0);
     }
 
     .rightButton {
-      left: 75%;
+      left: initial;
+      right: 10px;
+      transform: translate(0, 0);
+    }
+
+    .bothButton {
+      transform: translate(-50%, 0);
     }
   }
 

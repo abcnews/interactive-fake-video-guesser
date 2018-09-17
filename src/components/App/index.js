@@ -248,9 +248,9 @@ class App extends Component {
         </div>
       );
     } else {
-      let leftButtonTop = `${this.state.videoHeight - (this.state.hasBoth ? 130 : 60)}px`;
-      let rightButtonTop = `${this.state.videoHeight - (this.state.hasBoth ? 130 : 60)}px`;
-      let bothButtonTop = `${this.state.videoHeight - 60}px`;
+      let leftButtonTop = `${this.state.videoHeight - 70}px`;
+      let rightButtonTop = `${this.state.videoHeight - 70}px`;
+      let bothButtonTop = `${this.state.videoHeight - 70}px`;
 
       if (this.state.isPortrait) {
         leftButtonTop = `40px`;
