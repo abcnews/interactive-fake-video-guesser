@@ -4,6 +4,10 @@
   width: 100% !important;
 }
 
+:global(.Header.is-dark) {
+  background-color: #232227 !important;
+}
+
 :global(.Caption) {
   display: none;
 }
@@ -24,7 +28,7 @@
 
 .loader {
   position: absolute;
-  top: 20px;
+  bottom: 20px;
   left: 20px;
 }
 

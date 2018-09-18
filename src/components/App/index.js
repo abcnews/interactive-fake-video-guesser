@@ -65,7 +65,12 @@ class App extends Component {
   onScroll() {
     const bounds = this.base.getBoundingClientRect();
 
-    if (bounds.top < window.innerHeight) {
+    if (
+      bounds.top < window.innerHeight &&
+      this.state.video &&
+      this.state.video.querySelector('video') &&
+      this.state.video.querySelector('video').paused
+    ) {
       this.state.video.querySelector('video').play();
     }
   }
@@ -82,7 +87,7 @@ class App extends Component {
       // Videos are a weird res on mobile
       if (this.state.isPortrait) {
         let sizer = video.querySelector('*[class^="u-sizer"]');
-        videoHeight = (sizer.offsetWidth / 1090) * 1744;
+        videoHeight = (sizer.offsetWidth / 65) * 108;
         sizer.style.setProperty('height', videoHeight + 'px');
       }
 
