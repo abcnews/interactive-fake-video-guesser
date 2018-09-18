@@ -5,7 +5,13 @@
 }
 
 :global(.Caption) {
-  background: none !important;
+  display: none;
+}
+
+:global(.Main) {
+  a {
+    color: #00eeca !important;
+  }
 }
 
 .base {
@@ -44,13 +50,13 @@
   .rightButton,
   .bothButton,
   .neitherButton {
-    font-size: 16px;
+    font-size: 15px;
     line-height: 38px;
-    padding: 0 18px;
+    padding: 0 16px;
     border: none;
     background: white;
     text-transform: uppercase;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: ABCSans, Arial, Helvetica, sans-serif;
     cursor: pointer;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     transition: all 0.3s ease;
@@ -91,6 +97,7 @@
 
   .neitherButtonWrapper {
     text-align: center;
+    padding: 10px 0;
   }
 }
 
@@ -127,6 +134,7 @@
     .neitherResult {
       width: 40%;
       margin: auto;
+      margin-top: 10px;
     }
   }
 }

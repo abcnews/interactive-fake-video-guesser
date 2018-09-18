@@ -188,9 +188,9 @@ class App extends Component {
     }
 
     if (this.state.hasChosen) {
-      let leftTop = `${this.state.videoHeight - (this.state.hasBoth ? 180 : 80)}px`;
-      let rightTop = `${this.state.videoHeight - (this.state.hasBoth ? 180 : 80)}px`;
-      let bothTop = `${this.state.videoHeight - 80}px`;
+      let leftTop = `${this.state.videoHeight - (this.state.hasBoth ? 135 : 35)}px`;
+      let rightTop = `${this.state.videoHeight - (this.state.hasBoth ? 135 : 35)}px`;
+      let bothTop = `${this.state.videoHeight - 35}px`;
 
       if (this.state.isPortrait) {
         leftTop = `40px`;
@@ -248,9 +248,9 @@ class App extends Component {
         </div>
       );
     } else {
-      let leftButtonTop = `${this.state.videoHeight - 70}px`;
-      let rightButtonTop = `${this.state.videoHeight - 70}px`;
-      let bothButtonTop = `${this.state.videoHeight - 70}px`;
+      let leftButtonTop = `${this.state.videoHeight - 35}px`;
+      let rightButtonTop = `${this.state.videoHeight - 35}px`;
+      let bothButtonTop = `${this.state.videoHeight - 35}px`;
 
       if (this.state.isPortrait) {
         leftButtonTop = `40px`;
