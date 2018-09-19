@@ -72,6 +72,14 @@ class App extends Component {
       this.state.video.querySelector('video').paused
     ) {
       this.state.video.querySelector('video').play();
+
+      // SUPER DIRTY HACK TO GET VIDEOS TO SHOW CONTROLS ON MOBILES
+      // WHEN LOW POWER IS TURNED ON
+      this.isPlayingTimer = setTimeout(() => {
+        if (this.state.video.querySelector('video').paused) {
+          this.state.video.querySelector('video');
+        }
+      }, 1000);
     }
   }
 
