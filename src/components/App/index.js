@@ -153,7 +153,7 @@ class App extends Component {
     let hasNeither = false;
 
     // Work out how many votes there were for an option
-    let options = this.props.config.options.map(option => {
+    let options = this.props.config.options.map((option, index) => {
       if (option === 'both') {
         hasBoth = true;
       }
@@ -163,7 +163,7 @@ class App extends Component {
 
       return {
         name: option,
-        value: response[option] || 0
+        value: response[option] || this.state.options[index].value || 0
       };
     });
 
@@ -275,12 +275,15 @@ class App extends Component {
 
       ui = (
         <div className={styles.options}>
-          <button className={styles.leftButton} onClick={() => this.choose(leftLabel)} style={{ top: leftButtonTop }}>
+          <button
+            className={styles.leftButton}
+            onClick={() => this.choose(options[0].name)}
+            style={{ top: leftButtonTop }}>
             {leftLabel} is fake
           </button>
           <button
             className={styles.rightButton}
-            onClick={() => this.choose(rightLabel)}
+            onClick={() => this.choose(options[1].name)}
             style={{ top: rightButtonTop }}>
             {rightLabel} is fake
           </button>
