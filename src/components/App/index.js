@@ -193,14 +193,16 @@ class App extends Component {
     }
 
     if (this.state.hasChosen) {
-      let leftTop = `${this.state.videoHeight - (this.state.hasBoth ? 135 : 35)}px`;
-      let rightTop = `${this.state.videoHeight - (this.state.hasBoth ? 135 : 35)}px`;
-      let bothTop = `${this.state.videoHeight - 35}px`;
+      let leftTop = `${this.state.videoHeight - 35}px`;
+      let rightTop = `${this.state.videoHeight - 35}px`;
+      let bothTop = '50%';
+      let neitherTop = '50%';
 
       if (this.state.isPortrait) {
         leftTop = `40px`;
-        rightTop = `${this.state.videoHeight - (this.state.hasBoth ? 70 : 40)}px`;
+        rightTop = `${this.state.videoHeight - 45}px`;
         bothTop = `${this.state.videoHeight / 2}px`;
+        neitherTop = `${this.state.videoHeight + 50}px`;
       }
 
       ui = (
@@ -225,28 +227,33 @@ class App extends Component {
                   isChosen={rightLabel === choice}
                 />
 
-                {options.map(option => {
-                  if (option.name === 'both') {
-                    return (
-                      <Result
-                        className={styles.bothResult}
-                        style={{ top: bothTop }}
-                        percentage={option.percentage}
-                        label={option.name}
-                        isChosen={option.name === choice}
-                      />
-                    );
-                  } else if (option.name === 'neither') {
-                    return (
-                      <Result
-                        className={styles.neitherResult}
-                        percentage={option.percentage}
-                        label={option.name}
-                        isChosen={option.name === choice}
-                      />
-                    );
-                  }
-                })}
+                {(this.state.hasBoth || this.state.hasNeither) && (
+                  <div className={styles.bothAndNeither}>
+                    {options.map(option => {
+                      if (option.name === 'both') {
+                        return (
+                          <Result
+                            className={styles.bothResult}
+                            style={{ top: bothTop }}
+                            percentage={option.percentage}
+                            label={option.name}
+                            isChosen={option.name === choice}
+                          />
+                        );
+                      } else if (option.name === 'neither') {
+                        return (
+                          <Result
+                            className={styles.neitherResult}
+                            style={{ top: neitherTop }}
+                            percentage={option.percentage}
+                            label={option.name}
+                            isChosen={option.name === choice}
+                          />
+                        );
+                      }
+                    })}
+                  </div>
+                )}
               </div>
             </div>
           )}
@@ -255,12 +262,14 @@ class App extends Component {
     } else {
       let leftButtonTop = `${this.state.videoHeight - 35}px`;
       let rightButtonTop = `${this.state.videoHeight - 35}px`;
-      let bothButtonTop = `${this.state.videoHeight - 35}px`;
+      let bothButtonTop = '0px';
+      let neitherButtonTop = '0px';
 
       if (this.state.isPortrait) {
         leftButtonTop = `40px`;
-        rightButtonTop = `${this.state.videoHeight - (this.state.hasBoth ? 70 : 40)}px`;
+        rightButtonTop = `${this.state.videoHeight - 35}px`;
         bothButtonTop = `${this.state.videoHeight / 2}px`;
+        neitherButtonTop = `${this.state.videoHeight + 28}px`;
       }
 
       ui = (
@@ -274,27 +283,31 @@ class App extends Component {
             style={{ top: rightButtonTop }}>
             {rightLabel} is fake
           </button>
-
-          {options.map(option => {
-            if (option.name === 'both') {
-              return (
-                <button
-                  className={styles.bothButton}
-                  style={{ top: bothButtonTop }}
-                  onClick={() => this.choose(option.name)}>
-                  {option.name} are fake
-                </button>
-              );
-            } else if (option.name === 'neither') {
-              return (
-                <div className={styles.neitherButtonWrapper}>
-                  <button className={styles.neitherButton} onClick={() => this.choose(option.name)}>
-                    {option.name} are fake
-                  </button>
-                </div>
-              );
-            }
-          })}
+          {(this.state.hasBoth || this.state.hasNeither) && (
+            <div className={styles.bothAndNeither}>
+              {options.map(option => {
+                if (option.name === 'both') {
+                  return (
+                    <button
+                      className={styles.bothButton}
+                      style={{ top: bothButtonTop }}
+                      onClick={() => this.choose(option.name)}>
+                      {option.name} are fake
+                    </button>
+                  );
+                } else if (option.name === 'neither') {
+                  return (
+                    <button
+                      className={styles.neitherButton}
+                      style={{ top: neitherButtonTop }}
+                      onClick={() => this.choose(option.name)}>
+                      {option.name} are fake
+                    </button>
+                  );
+                }
+              })}
+            </div>
+          )}
         </div>
       );
     }

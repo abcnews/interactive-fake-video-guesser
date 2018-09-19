@@ -41,9 +41,17 @@
     }
   }
 
+  .bothAndNeither {
+    position: relative;
+    height: 38px;
+    margin: 20px auto;
+    width: 100%;
+  }
+
   .leftButton,
   .rightButton,
-  .bothButton {
+  .bothButton,
+  .neitherButton {
     position: absolute;
     top: 0px;
     left: 50%;
@@ -54,6 +62,7 @@
   .rightButton,
   .bothButton,
   .neitherButton {
+    width: 60%;
     font-size: 15px;
     line-height: 38px;
     padding: 0 16px;
@@ -72,6 +81,10 @@
   }
 
   @media screen and (max-device-width: 499px) {
+    .bothAndNeither {
+      position: initial;
+    }
+
     .leftButton,
     .rightButton,
     .bothButton,
@@ -83,50 +96,73 @@
   }
 
   @media screen and (min-device-width: 500px) {
+    .leftButton,
+    .rightButton,
+    .bothButton,
+    .neitherButton {
+      width: 20%;
+    }
+
     .leftButton {
-      left: 10px;
-      transform: translate(0, 0);
+      left: 25%;
+      transform: translate(-50%, 0);
     }
 
     .rightButton {
-      left: initial;
-      right: 10px;
-      transform: translate(0, 0);
+      left: 75%;
+      transform: translate(-50%, 0);
     }
 
     .bothButton {
+      left: 25%;
       transform: translate(-50%, 0);
     }
-  }
 
-  .neitherButtonWrapper {
-    text-align: center;
-    padding: 10px 0;
+    .neitherButton {
+      left: 75%;
+      transform: translate(-50%, 0);
+    }
   }
 }
 
 .results {
-  .leftResult,
-  .rightResult,
-  .bothResult {
-    position: absolute;
-    top: 0px;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 40%;
+  .bothAndNeither {
+    position: relative;
+    height: 90px;
+    margin: 10px auto;
+    width: 100%;
   }
 
   @media screen and (max-device-width: 499px) {
+    .bothAndNeither {
+      position: inherit;
+    }
+
     .leftResult,
     .rightResult,
     .bothResult,
     .neitherResult {
-      width: 80%;
+      position: absolute;
+      top: 0px;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 90%;
       margin: auto;
+      text-align: center;
     }
   }
 
   @media screen and (min-device-width: 500px) {
+    .leftResult,
+    .rightResult,
+    .bothResult,
+    .neitherResult {
+      position: absolute;
+      transform: translate(-50%, -50%);
+      width: 40%;
+      text-align: center;
+    }
+
     .leftResult {
       left: 25%;
     }
@@ -135,10 +171,14 @@
       left: 75%;
     }
 
+    .bothResult {
+      top: 50%;
+      left: 25%;
+    }
+
     .neitherResult {
-      width: 40%;
-      margin: auto;
-      margin-top: 10px;
+      top: 50%;
+      left: 75%;
     }
   }
 }
