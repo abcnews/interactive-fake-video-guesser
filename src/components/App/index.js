@@ -77,7 +77,7 @@ class App extends Component {
       // WHEN LOW POWER IS TURNED ON
       this.isPlayingTimer = setTimeout(() => {
         if (this.state.video.querySelector('video').paused) {
-          this.state.video.querySelector('video');
+          this.state.video.querySelector('video').setAttribute('controls', true);
         }
       }, 1000);
     }
