@@ -87,12 +87,13 @@ class App extends Component {
       // Videos are a weird res on mobile
       if (this.state.isPortrait) {
         let sizer = video.querySelector('*[class^="u-sizer"]');
-        videoHeight = (sizer.offsetWidth / 65) * 108;
+        // videoHeight = (sizer.offsetWidth / 65) * 108;
+        videoHeight = (sizer.offsetWidth / 1090) * 1744;
         sizer.style.setProperty('height', videoHeight + 'px');
       }
 
       video.parentElement.removeChild(video);
-      this.setState(state => ({ video, videoWidth, videoHeight }));
+      this.setState(state => ({ video, videoWidth, videoHeight }), () => this.onScroll());
     }
   }
 
