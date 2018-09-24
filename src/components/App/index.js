@@ -94,9 +94,13 @@ class App extends Component {
         sizer.style.setProperty('height', videoHeight + 'px');
       }
 
-      video.querySelector('video').addEventListener('play', e => {
+      if (video.querySelector('video').paused) {
+        video.querySelector('video').addEventListener('play', e => {
+          this.setState({ areButtonsVisible: true });
+        });
+      } else {
         this.setState({ areButtonsVisible: true });
-      });
+      }
 
       video.parentElement.removeChild(video);
       this.setState(state => ({ video, videoWidth, videoHeight }), () => this.onScroll());
