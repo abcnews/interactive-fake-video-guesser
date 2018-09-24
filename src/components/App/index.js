@@ -1,4 +1,5 @@
 const { h, Component } = require('preact');
+const smoothscroll = require('smoothscroll');
 const styles = require('./styles.scss');
 const { Client } = require('../../poll-counter');
 const Result = require('../Result');
@@ -63,16 +64,16 @@ class App extends Component {
   }
 
   onScroll() {
-    const bounds = this.base.getBoundingClientRect();
-
-    if (
-      bounds.top < window.innerHeight &&
-      this.state.video &&
-      this.state.video.querySelector('video') &&
-      this.state.video.querySelector('video').paused
-    ) {
-      this.state.video.querySelector('video').play();
-    }
+    // const bounds = this.base.getBoundingClientRect();
+    //
+    // if (
+    //   bounds.top < window.innerHeight &&
+    //   this.state.video &&
+    //   this.state.video.querySelector('video') &&
+    //   this.state.video.querySelector('video').paused
+    // ) {
+    //   this.state.video.querySelector('video').play();
+    // }
   }
 
   getVideo() {
@@ -140,9 +141,11 @@ class App extends Component {
   choose(choice) {
     this.setState({ hasChosen: true, choice });
 
-    client.increment({ question: this.props.config.question, answer: choice }, (err, question) => {
-      if (err) return console.log('Err:', err);
-      this.onResponse(question.value, true);
+    smoothscroll(this.base.offsetTop - 50, 400, () => {
+      client.increment({ question: this.props.config.question, answer: choice }, (err, question) => {
+        if (err) return console.log('Err:', err);
+        this.onResponse(question.value, true);
+      });
     });
   }
 
@@ -194,8 +197,8 @@ class App extends Component {
     }
 
     if (this.state.hasChosen) {
-      let leftTop = `${this.state.videoHeight - 35}px`;
-      let rightTop = `${this.state.videoHeight - 35}px`;
+      let leftTop = `${this.state.videoHeight - 40}px`;
+      let rightTop = `${this.state.videoHeight - 40}px`;
       let bothTop = '50%';
       let neitherTop = '50%';
 
