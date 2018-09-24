@@ -22,6 +22,7 @@ class App extends Component {
     this.revealRollups = this.revealRollups.bind(this);
 
     this.state = {
+      areButtonsVisible: false,
       isPortrait: window.innerWidth <= 499,
       video: null,
       videoWidth: 0,
@@ -92,6 +93,10 @@ class App extends Component {
         videoHeight = (sizer.offsetWidth / 1090) * 1744;
         sizer.style.setProperty('height', videoHeight + 'px');
       }
+
+      video.querySelector('video').addEventListener('play', e => {
+        this.setState({ areButtonsVisible: true });
+      });
 
       video.parentElement.removeChild(video);
       this.setState(state => ({ video, videoWidth, videoHeight }), () => this.onScroll());
@@ -186,7 +191,7 @@ class App extends Component {
   }
 
   render() {
-    const { options, choice } = this.state;
+    const { areButtonsVisible, options, choice } = this.state;
     let ui;
 
     let leftLabel = options[0].name;
@@ -281,13 +286,13 @@ class App extends Component {
           <button
             className={styles.leftButton}
             onClick={() => this.choose(options[0].name)}
-            style={{ top: leftButtonTop }}>
+            style={{ top: leftButtonTop, visibility: areButtonsVisible ? 'visible' : 'hidden' }}>
             {leftLabel} is fake
           </button>
           <button
             className={styles.rightButton}
             onClick={() => this.choose(options[1].name)}
-            style={{ top: rightButtonTop }}>
+            style={{ top: rightButtonTop, visibility: areButtonsVisible ? 'visible' : 'hidden' }}>
             {rightLabel} is fake
           </button>
           {(this.state.hasBoth || this.state.hasNeither) && (
@@ -297,7 +302,7 @@ class App extends Component {
                   return (
                     <button
                       className={styles.bothButton}
-                      style={{ top: bothButtonTop }}
+                      style={{ top: bothButtonTop, visibility: areButtonsVisible ? 'visible' : 'hidden' }}
                       onClick={() => this.choose(option.name)}>
                       {option.name} are fake
                     </button>
@@ -306,7 +311,7 @@ class App extends Component {
                   return (
                     <button
                       className={styles.neitherButton}
-                      style={{ top: neitherButtonTop }}
+                      style={{ top: neitherButtonTop, visibility: areButtonsVisible ? 'visible' : 'hidden' }}
                       onClick={() => this.choose(option.name)}>
                       {option.name} are fake
                     </button>
