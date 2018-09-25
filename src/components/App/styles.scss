@@ -18,9 +18,11 @@
   }
 }
 
-:global(.Main > .VideoEmbed),
-:global(.Main > .ImageEmbed) {
-  transform: scale(0.85);
+@media screen and (max-device-width: 500px) {
+  :global(.Main > .VideoEmbed),
+  :global(.Main > .ImageEmbed) {
+    transform: scale(0.85);
+  }
 }
 
 .base {
