@@ -12,7 +12,6 @@ class App extends Component {
     super(props);
 
     this.onResize = this.onResize.bind(this);
-    this.onScroll = this.onScroll.bind(this);
 
     this.choose = this.choose.bind(this);
     this.getVideo = this.getVideo.bind(this);
@@ -20,6 +19,8 @@ class App extends Component {
 
     this.getRollup = this.getRollup.bind(this);
     this.revealRollups = this.revealRollups.bind(this);
+
+    this.showButtons = this.showButtons.bind(this);
 
     this.state = {
       areButtonsVisible: false,
@@ -43,7 +44,6 @@ class App extends Component {
 
   componentDidMount() {
     window.addEventListener('resize', this.onResize);
-    window.addEventListener('scroll', this.onScroll);
 
     // Just add empty values in until we load the real ones
     this.onResponse({});
@@ -54,7 +54,6 @@ class App extends Component {
 
   componentWillUnmount() {
     window.removeEventListener('resize', this.onResize);
-    window.removeEventListener('scroll', this.onScroll);
 
     clearTimeout(this.getVideoTimer);
     clearTimeout(this.getRollupTimer);
@@ -62,19 +61,6 @@ class App extends Component {
 
   onResize() {
     this.setState({ isPortrait: window.innerWidth <= 499 });
-  }
-
-  onScroll() {
-    // const bounds = this.base.getBoundingClientRect();
-    //
-    // if (
-    //   bounds.top < window.innerHeight &&
-    //   this.state.video &&
-    //   this.state.video.querySelector('video') &&
-    //   this.state.video.querySelector('video').paused
-    // ) {
-    //   this.state.video.querySelector('video').play();
-    // }
   }
 
   getVideo() {
@@ -96,15 +82,19 @@ class App extends Component {
 
       if (video.querySelector('video').paused) {
         video.querySelector('video').addEventListener('play', e => {
-          this.setState({ areButtonsVisible: true });
+          this.showButtons();
         });
       } else {
-        this.setState({ areButtonsVisible: true });
+        this.showButtons();
       }
 
       video.parentElement.removeChild(video);
-      this.setState(state => ({ video, videoWidth, videoHeight }), () => this.onScroll());
+      this.setState(state => ({ video, videoWidth, videoHeight }));
     }
+  }
+
+  showButtons() {
+    this.setState({ areButtonsVisible: true });
   }
 
   injectVideo(element) {
@@ -331,7 +321,7 @@ class App extends Component {
     if (!this.state.video) return <div />;
 
     return (
-      <div className={styles.base}>
+      <div className={`${styles.base} ${this.state.isPortrait ? styles.scaled : ''}`}>
         <div ref={this.injectVideo} />
         {ui}
       </div>

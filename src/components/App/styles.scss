@@ -18,8 +18,17 @@
   }
 }
 
+:global(.Main > .VideoEmbed),
+:global(.Main > .ImageEmbed) {
+  transform: scale(0.85);
+}
+
 .base {
   position: relative;
+
+  :global(.VideoPlayer) {
+    background: var(--bg, #000);
+  }
 }
 
 .base * {
@@ -180,5 +189,23 @@
       top: 50%;
       left: 75%;
     }
+  }
+}
+
+.scaled {
+  transform: scale(0.85);
+
+  .leftButton,
+  .rightButton,
+  .bothButton,
+  .neitherButton {
+    font-size: 1.2rem;
+  }
+
+  .leftResult,
+  .rightResult,
+  .bothResult,
+  .neitherResult {
+    width: 110%;
   }
 }
