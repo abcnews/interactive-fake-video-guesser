@@ -1,6 +1,6 @@
 {
   "name": "fake-guesser",
-  "version": "1.1.17",
+  "version": "1.1.18",
   "description": "A project generated from aunty's preact-app template.",
   "license": "MIT",
   "private": true,
