@@ -25,7 +25,7 @@
   }
 }
 
-.base {
+.base2 {
   position: relative;
 
   :global(.VideoPlayer) {
@@ -33,7 +33,7 @@
   }
 }
 
-.base * {
+.base2 * {
   box-sizing: border-box;
 }
 
@@ -75,16 +75,17 @@
   .neitherButton {
     width: 60%;
     font-size: 15px;
-    line-height: 38px;
+    line-height: 40px;
     padding: 0 16px;
     border: none;
     background: white;
     text-transform: uppercase;
     font-family: ABCSans, Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    letter-spacing: 1px;
     cursor: pointer;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     transition: all 0.3s ease;
-    border-radius: 1px;
 
     &:hover {
       box-shadow: 0 3px 10px rgba(0, 0, 0, 0.4);
@@ -101,7 +102,7 @@
     .bothButton,
     .neitherButton {
       font-size: 14px;
-      line-height: 36px;
+      line-height: 47px;
       padding: 0 14px;
     }
   }
@@ -201,7 +202,7 @@
   .rightButton,
   .bothButton,
   .neitherButton {
-    font-size: 1.2rem;
+    // transform: scale(1.1);
   }
 
   .leftResult,

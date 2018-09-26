@@ -140,7 +140,7 @@ class App extends Component {
   choose(choice) {
     this.setState({ hasChosen: true, choice });
 
-    smoothscroll(this.base.offsetTop - 50, 400, () => {
+    smoothscroll(this.base.offsetTop - 10, 400, () => {
       client.increment({ question: this.props.config.question, answer: choice }, (err, question) => {
         if (err) return console.log('Err:', err);
         this.onResponse(question.value, true);
@@ -263,8 +263,8 @@ class App extends Component {
         </div>
       );
     } else {
-      let leftButtonTop = `${this.state.videoHeight - 35}px`;
-      let rightButtonTop = `${this.state.videoHeight - 35}px`;
+      let leftButtonTop = `${this.state.videoHeight - 48}px`;
+      let rightButtonTop = `${this.state.videoHeight - 48}px`;
       let bothButtonTop = '0px';
       let neitherButtonTop = '0px';
 
@@ -272,7 +272,7 @@ class App extends Component {
         leftButtonTop = `40px`;
         rightButtonTop = `${this.state.videoHeight - 35}px`;
         bothButtonTop = `${this.state.videoHeight / 2}px`;
-        neitherButtonTop = `${this.state.videoHeight + 28}px`;
+        neitherButtonTop = `${this.state.videoHeight + 40}px`;
       }
 
       ui = (
@@ -321,7 +321,7 @@ class App extends Component {
     if (!this.state.video) return <div />;
 
     return (
-      <div className={`${styles.base} ${this.state.isPortrait ? styles.scaled : ''}`}>
+      <div className={`${styles.base2} ${this.state.isPortrait ? styles.scaled : ''}`}>
         <div ref={this.injectVideo} />
         {ui}
       </div>
