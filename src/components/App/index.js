@@ -220,14 +220,14 @@ class App extends Component {
                   style={{ top: leftTop }}
                   percentage={options[0].percentage}
                   label={leftLabel}
-                  isChosen={leftLabel === choice}
+                  isChosen={options[0].name === choice}
                 />
                 <Result
                   className={styles.rightResult}
                   style={{ top: rightTop }}
                   percentage={options[1].percentage}
                   label={rightLabel}
-                  isChosen={rightLabel === choice}
+                  isChosen={options[1].name === choice}
                 />
 
                 {(this.state.hasBoth || this.state.hasNeither) && (

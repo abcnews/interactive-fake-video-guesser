@@ -5,6 +5,7 @@
   font-size: 1.1rem;
   line-height: 1.66666667;
   padding: 20px;
+  letter-spacing: 0.7px;
   text-transform: uppercase;
 
   animation-name: appear;
@@ -34,9 +35,13 @@
   }
 }
 
+.percentage {
+  font-weight: bold;
+}
+
 @media screen and (max-device-width: 500px) {
   .base {
-    padding: 8px;
+    padding: 12px;
     font-size: 1.05rem;
   }
 }

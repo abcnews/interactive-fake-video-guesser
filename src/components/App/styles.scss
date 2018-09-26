@@ -160,7 +160,6 @@
       transform: translate(-50%, -50%);
       width: 95%;
       margin: auto;
-      text-align: center;
     }
   }
 
@@ -172,7 +171,6 @@
       position: absolute;
       transform: translate(-50%, -50%);
       width: 40%;
-      text-align: center;
     }
 
     .leftResult {
@@ -197,18 +195,4 @@
 
 .scaled {
   transform: scale(0.85);
-
-  .leftButton,
-  .rightButton,
-  .bothButton,
-  .neitherButton {
-    // transform: scale(1.1);
-  }
-
-  .leftResult,
-  .rightResult,
-  .bothResult,
-  .neitherResult {
-    width: 110%;
-  }
 }
