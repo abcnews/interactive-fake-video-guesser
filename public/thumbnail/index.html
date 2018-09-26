@@ -40,10 +40,15 @@
       }
     })('originalLinkTarget=', String(window.location));
 
-    [].slice.call(document.querySelectorAll('video')).forEach(function (video) {
-      video.setAttribute('width', window.innerWidth);
-      video.setAttribute('height', window.innerHeight);
-    });
+    function setDimensions() {
+      [].slice.call(document.querySelectorAll('video')).forEach(function (video) {
+        video.setAttribute('width', window.innerWidth);
+        video.setAttribute('height', window.innerHeight);
+      });
+    }
+    setDimensions();
+
+    window.addEventListener('resize', setDimensions);
   </script>
 </body>
 
