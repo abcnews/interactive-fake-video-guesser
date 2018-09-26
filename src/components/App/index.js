@@ -124,6 +124,7 @@ class App extends Component {
       element.style.setProperty('margin-bottom', '0px');
       element.style.setProperty('transition', 'opacity 0.5s ease 0s');
       element.style.setProperty('opacity', 0);
+      element.style.setProperty('overflow', 'hidden');
     }
   }
 
@@ -134,6 +135,7 @@ class App extends Component {
       element.style.removeProperty('margin-bottom');
       element.style.removeProperty('max-height');
       element.style.setProperty('opacity', 1);
+      element.style.setProperty('overflow', '');
     });
   }
 
