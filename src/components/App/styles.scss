@@ -18,8 +18,8 @@
   }
 }
 
-:global(:not(.is-contained).VideoPlayer video:not([controls])),
-:global(.VideoPlayer _:-ms-lang(x)) {
+:global(.guesser :not(.is-contained).VideoPlayer video:not([controls])),
+:global(.guesser .VideoPlayer _:-ms-lang(x)) {
   width: 100% !important;
 }
 
