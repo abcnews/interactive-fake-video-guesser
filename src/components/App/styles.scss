@@ -18,6 +18,11 @@
   }
 }
 
+:global(:not(.is-contained).VideoPlayer video:not([controls])),
+:global(.VideoPlayer _:-ms-lang(x)) {
+  width: initial !important;
+}
+
 @media screen and (max-device-width: 500px) {
   :global(.Main > .VideoEmbed),
   :global(.Main > .ImageEmbed) {
