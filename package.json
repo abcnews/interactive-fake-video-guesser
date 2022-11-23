@@ -1,39 +1,39 @@
 {
-  "name": "fake-guesser",
-  "version": "1.1.21",
-  "description": "A project generated from aunty's preact-app template.",
-  "license": "MIT",
-  "private": true,
-  "contributors": [
-    "Nathan Hoad <nathan@nathanhoad.net>"
-  ],
-  "aunty": "preact",
-  "scripts": {
-    "start": "aunty serve",
-    "test": "jest"
-  },
-  "jest": {
-    "transform": {
-      ".*": "<rootDir>/node_modules/@abcnews/aunty/src/utils/jest"
-    }
-  },
-  "devDependencies": {
-    "babel-plugin-transform-react-jsx": "^6.24.1",
-    "babel-preset-env": "^1.7.0",
-    "html-looks-like": "^1.0.3",
-    "jest": "^23.1.0",
-    "preact-render-to-string": "^3.7.0"
-  },
-  "dependencies": {
-    "@abcnews/alternating-case-to-object": "^2.0.0",
-    "@abcnews/env-utils": "^3.1.0",
-    "@abcnews/mount-utils": "^2.0.0",
-    "es6-promise": "^4.2.4",
-    "isomorphic-fetch": "^3.0.0",
-    "object-assign": "^4.1.1",
-    "preact": "^8.2.9",
-    "preact-compat": "^3.18.0",
-    "smoothscroll": "^0.4.0",
-    "xhr": "^2.5.0"
-  }
+	"name": "fake-guesser",
+	"version": "2.0.0",
+	"description": "A project generated from aunty's preact-app template.",
+	"license": "MIT",
+	"private": true,
+	"contributors": [
+		"Nathan Hoad <nathan@nathanhoad.net>"
+	],
+	"aunty": "preact",
+	"scripts": {
+		"start": "aunty serve",
+		"test": "jest"
+	},
+	"jest": {
+		"transform": {
+			".*": "<rootDir>/node_modules/@abcnews/aunty/src/utils/jest"
+		}
+	},
+	"devDependencies": {
+		"babel-plugin-transform-react-jsx": "^6.24.1",
+		"babel-preset-env": "^1.7.0",
+		"html-looks-like": "^1.0.3",
+		"jest": "^23.1.0",
+		"preact-render-to-string": "^3.7.0"
+	},
+	"dependencies": {
+		"@abcnews/alternating-case-to-object": "^2.0.0",
+		"@abcnews/env-utils": "^3.1.0",
+		"@abcnews/mount-utils": "^2.0.0",
+		"es6-promise": "^4.2.4",
+		"isomorphic-fetch": "^3.0.0",
+		"object-assign": "^4.1.1",
+		"preact": "^8.2.9",
+		"preact-compat": "^3.18.0",
+		"smoothscroll": "^0.4.0",
+		"xhr": "^2.5.0"
+	}
 }
