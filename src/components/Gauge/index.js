@@ -1,5 +1,5 @@
 const { h, Component } = require('preact');
-const styles = require('./styles.scss');
+const styles = require('./styles.scss').default;
 
 class Gauge extends Component {
   constructor(props) {

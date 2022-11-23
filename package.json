@@ -18,7 +18,6 @@
     }
   },
   "devDependencies": {
-    "@abcnews/aunty": "^9.8.0",
     "babel-plugin-transform-react-jsx": "^6.24.1",
     "babel-preset-env": "^1.7.0",
     "html-looks-like": "^1.0.3",
@@ -27,7 +26,10 @@
   },
   "dependencies": {
     "@abcnews/alternating-case-to-object": "^2.0.0",
+    "@abcnews/env-utils": "^3.1.0",
+    "@abcnews/mount-utils": "^2.0.0",
     "es6-promise": "^4.2.4",
+    "isomorphic-fetch": "^3.0.0",
     "object-assign": "^4.1.1",
     "preact": "^8.2.9",
     "preact-compat": "^3.18.0",

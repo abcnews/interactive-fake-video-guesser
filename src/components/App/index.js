@@ -1,6 +1,6 @@
 const { h, Component } = require('preact');
 const smoothscroll = require('smoothscroll');
-const styles = require('./styles.scss');
+const styles = require('./styles.scss').default;
 const { Client } = require('../../poll-counter');
 const Result = require('../Result');
 const Loader = require('../Loader');
