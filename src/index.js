@@ -30,6 +30,9 @@ const root = document.querySelector(`[data-${PROJECT_NAME}-root]`);
 
 function init() {
   backtransformMounts();
+  Object.defineProperty(window, '__STORYLAB__', { value: "mountsReady" });
+  window.dispatchEvent(new Event("storylab:ready"));
+
   loadGuessers().forEach((guesser) => {
     const App = require("./components/App");
     render(
