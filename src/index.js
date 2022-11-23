@@ -30,8 +30,14 @@ const root = document.querySelector(`[data-${PROJECT_NAME}-root]`);
 
 function init() {
   backtransformMounts();
-  Object.defineProperty(window, '__STORYLAB__', { value: "mountsReady" });
-  window.dispatchEvent(new Event("storylab:ready"));
+
+  // Dynamically load our original before and after code
+  const scriptTag = document.createElement("script");
+  scriptTag.setAttribute(
+    "src",
+    "https://www.abc.net.au/res/sites/news-projects/interactive-before-and-after/3.0.10/index.js"
+  );
+  document.head.appendChild(scriptTag);
 
   loadGuessers().forEach((guesser) => {
     const App = require("./components/App");
